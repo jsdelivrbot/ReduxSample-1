@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {connect} from 'react-redux'//glue between react and redux
 renderLists()
 {
     this.props.books.map(function(book){
@@ -7,9 +8,11 @@ return(
 )
     });
 }
-export default class BookLits extends Component()
+class BookList extends Component()
 {
+ 
     render(){
+        console.log(this.props.abc)
         return(
             <ul>
             {this.renderLists()}
@@ -17,3 +20,11 @@ export default class BookLits extends Component()
         )
     }
 }
+
+function mapStateToProps(state){//application state connection there between redux and react
+  return{
+   books:state.book
+  }
+
+}
+export default connect(mapStateToProps)(BookList);//connect function and Component and produces container
